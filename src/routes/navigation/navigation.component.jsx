@@ -11,6 +11,7 @@ import { CartContext } from "../../context/cart.context";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+
   return (
     <>
       <div className="navigation">

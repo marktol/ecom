@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
@@ -7,14 +6,20 @@ import {
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
-import { CartContext } from "../../context/cart.context";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCartItems,
+  selectIsCartOpen,
+} from "../../store/cart/cart.selector";
+import { setIsCartOpen } from "../../store/cart/cart.action";
 
 const CartDropdown = () => {
-  const { cartItems } = useContext(CartContext);
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const isCartOpen = useSelector(selectIsCartOpen);
   const toggleIsCartOpen = () => {
-    setIsCartOpen(!isCartOpen);
+    dispatch(setIsCartOpen(!isCartOpen));
   };
 
   return (
